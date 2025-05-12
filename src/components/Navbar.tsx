@@ -35,7 +35,7 @@ const Navbar = () => {
             <div className="flex items-center space-x-6">
               <div className="flex items-center">
                 <PhoneCall className="h-4 w-4 mr-2" />
-                <span>0909 123 456</span>
+                <span><strong>Hotline:</strong> 0909 123 456</span>
               </div>
               <div className="flex items-center">
                 <Mail className="h-4 w-4 mr-2" />
@@ -64,11 +64,10 @@ const Navbar = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <a href="/" className="flex items-center">
-                <img 
-                  src="https://taxiquangnam.io.vn/wp-content/uploads/2023/08/logo.png" 
-                  alt="Taxi Tiền Giang" 
-                  className="h-12 md:h-16"
-                />
+                <div className="font-bold text-2xl">
+                  <span className="text-brand-blue">Taxi</span>
+                  <span className="text-brand-yellow">Tiền Giang</span>
+                </div>
               </a>
             </div>
 
@@ -81,7 +80,7 @@ const Navbar = () => {
               <a href="#contact" className="text-gray-800 hover:text-brand-blue font-medium">Liên hệ</a>
               <Button className="bg-brand-yellow hover:bg-yellow-500 text-brand-darkBlue font-bold">
                 <PhoneCall className="mr-2 h-4 w-4" />
-                <span>0909 123 456</span>
+                <span><strong>Hotline:</strong> 0909 123 456</span>
               </Button>
             </div>
 
@@ -115,7 +114,7 @@ const Navbar = () => {
               </a>
               <Button className="bg-brand-yellow hover:bg-yellow-500 text-brand-darkBlue font-bold w-full">
                 <PhoneCall className="mr-2 h-4 w-4" />
-                <span>0909 123 456</span>
+                <span><strong>Hotline:</strong> 0909 123 456</span>
               </Button>
             </div>
           </div>

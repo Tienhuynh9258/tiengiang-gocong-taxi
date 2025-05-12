@@ -22,11 +22,6 @@ const CarCard: React.FC<CarCardProps> = ({
 }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl">
-      {isPopular && (
-        <div className="absolute top-4 right-4 bg-brand-yellow text-brand-darkBlue px-3 py-1 rounded-full text-xs font-semibold z-10">
-          Phổ biến
-        </div>
-      )}
       <div className="relative h-48 overflow-hidden">
         <img 
           src={image} 
