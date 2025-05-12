@@ -15,8 +15,8 @@ const Index = () => {
     {
       id: 1,
       name: 'Sedan 4 Chỗ',
-      image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=2070&auto=format&fit=crop',
-      price: '200.000 VNĐ/chuyến',
+      image: 'https://taxiquangnam.io.vn/wp-content/uploads/2023/08/4cho.jpg',
+      price: '200.000 VNĐ',
       seats: 4,
       features: ['Máy lạnh', 'Wifi miễn phí', 'Nước uống', 'Tài xế chuyên nghiệp'],
       isPopular: true
@@ -24,26 +24,26 @@ const Index = () => {
     {
       id: 2,
       name: 'SUV 7 Chỗ',
-      image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2070&auto=format&fit=crop',
-      price: '350.000 VNĐ/chuyến',
+      image: 'https://taxiquangnam.io.vn/wp-content/uploads/2023/08/7cho.jpg',
+      price: '350.000 VNĐ',
       seats: 7,
       features: ['Máy lạnh', 'Wifi miễn phí', 'Nước uống', 'Rộng rãi']
     },
     {
       id: 3,
-      name: 'Xe VIP',
-      image: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=2070&auto=format&fit=crop',
-      price: '500.000 VNĐ/chuyến',
-      seats: 4,
-      features: ['Ghế da cao cấp', 'Wifi tốc độ cao', 'Nước uống & snack', 'Tài xế VIP']
+      name: 'Xe 16 Chỗ',
+      image: 'https://taxiquangnam.io.vn/wp-content/uploads/2023/08/16cho.jpg',
+      price: '700.000 VNĐ',
+      seats: 16,
+      features: ['Máy lạnh', 'Wifi miễn phí', 'Phù hợp nhóm lớn', 'Hành lý rộng rãi']
     },
     {
       id: 4,
-      name: 'Xe 16 Chỗ',
-      image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=2071&auto=format&fit=crop',
-      price: '700.000 VNĐ/chuyến',
-      seats: 16,
-      features: ['Máy lạnh', 'Wifi miễn phí', 'Phù hợp nhóm lớn', 'Hành lý rộng rãi']
+      name: 'Xe VIP',
+      image: 'https://taxiquangnam.io.vn/wp-content/uploads/2023/08/vip.jpg',
+      price: '500.000 VNĐ',
+      seats: 4,
+      features: ['Ghế da cao cấp', 'Wifi tốc độ cao', 'Nước uống & snack', 'Tài xế VIP']
     }
   ];
 
@@ -51,15 +51,22 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       <Hero />
+      
+      {/* About Section First */}
+      <AboutSection />
+      
+      {/* Services Section */}
       <ServiceBenefits />
-      <WhyChooseUs />
       
       {/* Car Listing Section */}
-      <section id="cars" className="py-16 bg-white">
+      <section id="cars" className="py-16 bg-gray-100">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Các Loại Xe Của Chúng Tôi</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">CÁC LOẠI XE CỦA CHÚNG TÔI</h2>
+            <div className="flex justify-center">
+              <div className="h-1 w-20 bg-brand-yellow"></div>
+            </div>
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
               Đa dạng các loại xe từ 4 đến 16 chỗ, đáp ứng mọi nhu cầu di chuyển của bạn
             </p>
           </div>
@@ -80,14 +87,17 @@ const Index = () => {
         </div>
       </section>
       
-      <AboutSection />
+      {/* Why Choose Us */}
+      <WhyChooseUs />
+      
+      {/* Contact Section */}
       <ContactSection />
       <Footer />
       
       {/* Back to top button */}
       <a 
         href="#" 
-        className="fixed bottom-8 right-8 bg-brand-blue text-white p-3 rounded-full shadow-lg hover:bg-brand-darkBlue transition-colors z-50"
+        className="fixed bottom-8 right-8 bg-brand-yellow text-brand-darkBlue p-3 rounded-full shadow-lg hover:bg-yellow-500 transition-colors z-50"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />

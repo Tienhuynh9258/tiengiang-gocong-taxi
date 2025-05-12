@@ -1,62 +1,67 @@
 
 import React from 'react';
-import { Button } from "@/components/ui/button";
-import { Check, PhoneCall } from 'lucide-react';
+import { Check, Clock, Shield, MapPin, BadgeDollarSign, Car } from 'lucide-react';
 
 const WhyChooseUs = () => {
   const reasons = [
-    'Đội xe hiện đại, đa dạng loại xe',
-    'Giá cả cạnh tranh, công khai minh bạch',
-    'Tài xế chuyên nghiệp, am hiểu địa phương',
-    'Dịch vụ 24/7, hỗ trợ khách hàng nhanh chóng',
-    'Xe sạch sẽ, được bảo dưỡng định kỳ',
-    'Hóa đơn VAT đầy đủ cho khách hàng doanh nghiệp'
+    {
+      icon: <Shield className="h-10 w-10 text-brand-yellow" />,
+      title: "An toàn tuyệt đối",
+      description: "Xe đời mới, bảo dưỡng định kỳ, tài xế lành nghề"
+    },
+    {
+      icon: <Clock className="h-10 w-10 text-brand-yellow" />,
+      title: "Đúng giờ",
+      description: "Phục vụ 24/7, đến đúng giờ, không để khách chờ đợi"
+    },
+    {
+      icon: <BadgeDollarSign className="h-10 w-10 text-brand-yellow" />,
+      title: "Giá cả hợp lý",
+      description: "Bảng giá minh bạch, không phụ thu, không phát sinh"
+    },
+    {
+      icon: <Car className="h-10 w-10 text-brand-yellow" />,
+      title: "Xe đời mới",
+      description: "Đội xe hiện đại, đầy đủ tiện nghi, sạch sẽ, thoải mái"
+    },
+    {
+      icon: <MapPin className="h-10 w-10 text-brand-yellow" />,
+      title: "Nhiều điểm đón",
+      description: "Dễ dàng đón khách tại nhiều điểm trong và ngoài tỉnh"
+    },
+    {
+      icon: <Check className="h-10 w-10 text-brand-yellow" />,
+      title: "Tài xế chuyên nghiệp",
+      description: "Tài xế thân thiện, am hiểu địa phương, nhiều kinh nghiệm"
+    }
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-gray-100">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Tại Sao Chọn Dịch Vụ Taxi Tiền Giang?</h2>
-            <p className="text-gray-600 mb-8">
-              Với nhiều năm kinh nghiệm phục vụ khách hàng, chúng tôi tự hào mang đến dịch vụ taxi chất lượng cao tại Tiền Giang. Sự hài lòng của khách hàng luôn là ưu tiên hàng đầu của chúng tôi.
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-              {reasons.map((reason, index) => (
-                <div key={index} className="flex items-start">
-                  <div className="flex-shrink-0 mt-1">
-                    <Check className="h-5 w-5 text-brand-blue" />
-                  </div>
-                  <p className="ml-3 text-gray-600">{reason}</p>
-                </div>
-              ))}
-            </div>
-            
-            <Button className="bg-brand-blue hover:bg-brand-darkBlue text-white rounded-full">
-              <PhoneCall className="mr-2 h-4 w-4" />
-              Gọi Ngay: 0909 123 456
-            </Button>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">TẠI SAO CHỌN TAXI TIỀN GIANG?</h2>
+          <div className="flex justify-center">
+            <div className="h-1 w-20 bg-brand-yellow"></div>
           </div>
-          
-          <div className="relative">
-            <div className="rounded-lg overflow-hidden shadow-xl">
-              <img 
-                src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop" 
-                alt="Taxi service" 
-                className="w-full h-auto rounded-lg"
-              />
+          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+            Với nhiều năm kinh nghiệm, chúng tôi tự hào là đơn vị cung cấp dịch vụ taxi uy tín hàng đầu tại Tiền Giang
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {reasons.map((reason, index) => (
+            <div 
+              key={index} 
+              className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className="mb-4">{reason.icon}</div>
+                <h3 className="text-xl font-bold text-gray-800 mb-3">{reason.title}</h3>
+                <p className="text-gray-600">{reason.description}</p>
+              </div>
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-brand-yellow text-brand-darkBlue p-6 rounded-lg shadow-lg hidden md:block">
-              <div className="text-2xl font-bold">10+</div>
-              <div className="text-sm">Năm kinh nghiệm</div>
-            </div>
-            <div className="absolute -top-6 -right-6 bg-brand-blue text-white p-6 rounded-lg shadow-lg hidden md:block">
-              <div className="text-2xl font-bold">1000+</div>
-              <div className="text-sm">Khách hàng hài lòng</div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

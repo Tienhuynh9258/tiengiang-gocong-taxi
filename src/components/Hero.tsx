@@ -1,107 +1,108 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, MapPin, Search } from 'lucide-react';
+import { ChevronLeft, ChevronRight, PhoneCall } from 'lucide-react';
 
 const Hero = () => {
-  const [pickupLocation, setPickupLocation] = useState('');
-  const [dropoffLocation, setDropoffLocation] = useState('');
-  const [pickupDate, setPickupDate] = useState('');
-  const [pickupTime, setPickupTime] = useState('');
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  const slides = [
+    {
+      id: 1,
+      image: "https://taxiquangnam.io.vn/wp-content/uploads/2023/08/slide1.jpg",
+      title: "Taxi Tiền Giang",
+      subtitle: "Dịch vụ taxi uy tín, chất lượng cao tại Tiền Giang"
+    },
+    {
+      id: 2,
+      image: "https://taxiquangnam.io.vn/wp-content/uploads/2023/08/slide2.jpg",
+      title: "Đa dạng phương tiện",
+      subtitle: "Nhiều loại xe từ 4 đến 16 chỗ đáp ứng mọi nhu cầu"
+    },
+    {
+      id: 3,
+      image: "https://taxiquangnam.io.vn/wp-content/uploads/2023/08/slide3.jpg",
+      title: "Giá cả hợp lý",
+      subtitle: "Bảng giá minh bạch, không phát sinh chi phí"
+    }
+  ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({ pickupLocation, dropoffLocation, pickupDate, pickupTime });
-    // In a real app, this would send the booking request
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
   };
 
   return (
-    <section className="relative h-screen min-h-[600px] flex items-center bg-gray-900">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ 
-          backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1623473443463-d6e18dc7fed8?q=80&w=2070&auto=format&fit=crop')",
-        }}
-      ></div>
-      
-      <div className="container relative z-10 mx-auto px-4 pt-20">
-        <div className="max-w-3xl">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 text-shadow-lg">
-            Dịch Vụ Taxi Tiền Giang Uy Tín
-          </h1>
-          <p className="text-xl text-white mb-8 text-shadow">
-            Cung cấp dịch vụ đưa đón chất lượng cao, an toàn và tiện lợi cho mọi nhu cầu di chuyển của bạn tại Tiền Giang
-          </p>
-          <div className="bg-white rounded-lg shadow-lg p-6 mt-8">
-            <form onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div className="relative">
-                  <label htmlFor="pickup" className="block text-sm font-medium text-gray-700 mb-1">Điểm đón</label>
-                  <div className="relative">
-                    <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                    <input 
-                      type="text" 
-                      id="pickup"
-                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-brand-blue focus:border-brand-blue" 
-                      placeholder="Nhập điểm đón"
-                      value={pickupLocation}
-                      onChange={(e) => setPickupLocation(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="relative">
-                  <label htmlFor="dropoff" className="block text-sm font-medium text-gray-700 mb-1">Điểm đến</label>
-                  <div className="relative">
-                    <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                    <input 
-                      type="text" 
-                      id="dropoff"
-                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-brand-blue focus:border-brand-blue" 
-                      placeholder="Nhập điểm đến"
-                      value={dropoffLocation}
-                      onChange={(e) => setDropoffLocation(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="relative">
-                  <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">Ngày đón</label>
-                  <div className="relative">
-                    <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                    <input 
-                      type="date" 
-                      id="date"
-                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-brand-blue focus:border-brand-blue" 
-                      value={pickupDate}
-                      onChange={(e) => setPickupDate(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="relative">
-                  <label htmlFor="time" className="block text-sm font-medium text-gray-700 mb-1">Giờ đón</label>
-                  <div className="relative">
-                    <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                    <input 
-                      type="time" 
-                      id="time"
-                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-brand-blue focus:border-brand-blue" 
-                      value={pickupTime}
-                      onChange={(e) => setPickupTime(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
+    <section className="relative h-[500px] md:h-[600px] overflow-hidden">
+      <div className="relative h-full">
+        {slides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ 
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${slide.image}')`,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+              }}
+            ></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="container mx-auto px-4 text-center">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 text-shadow-lg">
+                  {slide.title}
+                </h1>
+                <p className="text-xl text-white mb-8 max-w-3xl mx-auto text-shadow">
+                  {slide.subtitle}
+                </p>
+                <Button className="bg-brand-yellow hover:bg-yellow-400 text-brand-darkBlue font-semibold text-lg px-8 py-6 rounded shadow-lg">
+                  <PhoneCall className="mr-2 h-5 w-5" />
+                  Gọi Ngay: 0909 123 456
+                </Button>
               </div>
-              <Button type="submit" className="w-full bg-brand-blue hover:bg-brand-darkBlue text-white py-3 rounded-md transition duration-200">
-                <Search className="mr-2 h-5 w-5" />
-                Tìm Xe
-              </Button>
-            </form>
+            </div>
           </div>
-        </div>
+        ))}
+      </div>
+
+      {/* Navigation arrows */}
+      <button 
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full"
+        onClick={prevSlide}
+      >
+        <ChevronLeft className="h-6 w-6" />
+      </button>
+      <button 
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full"
+        onClick={nextSlide}
+      >
+        <ChevronRight className="h-6 w-6" />
+      </button>
+
+      {/* Indicators */}
+      <div className="absolute bottom-5 left-0 right-0 flex justify-center space-x-2">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            className={`h-2 w-8 rounded-full transition-all ${
+              index === currentSlide ? 'bg-brand-yellow' : 'bg-white/50'
+            }`}
+            onClick={() => setCurrentSlide(index)}
+          ></button>
+        ))}
       </div>
     </section>
   );
