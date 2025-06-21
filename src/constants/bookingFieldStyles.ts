@@ -14,7 +14,7 @@ export const bookingFieldStyles = {
     dulich: { icon: Globe, color: '#0EA5E9' }, // Globe cho Du lịch
     hopdong: { icon: FileText, color: '#F59E42' }, // Cam
   },
-  fullName: {
+  name: {
     icon: User,
     color: '#EF4444', // Đỏ
   },
@@ -26,7 +26,7 @@ export const bookingFieldStyles = {
     icon: Car,
     color: '#0EA5E9', // Xanh biển
   },
-  pickupDate: {
+  pickupDateTime: {
     icon: Calendar,
     color: '#14B8A6', // Xanh teal
   },

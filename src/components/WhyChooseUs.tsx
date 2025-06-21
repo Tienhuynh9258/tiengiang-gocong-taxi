@@ -46,7 +46,7 @@ const WhyChooseUs = () => {
             <div className="h-1 w-20 bg-brand-yellow"></div>
           </div>
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-            Với nhiều năm kinh nghiệm, chúng tôi tự hào là đơn vị cung cấp dịch vụ taxi uy tín hàng đầu tại Tiền Giang
+            Với nhiều năm kinh nghiệm, chúng tôi tự hào là đơn vị cung cấp dịch vụ taxi uy tín hàng đầu tại Gò Công
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

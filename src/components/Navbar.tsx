@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, PhoneCall, MapPin, Mail } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -35,11 +34,11 @@ const Navbar = () => {
             <div className="flex items-center space-x-6">
               <div className="flex items-center">
                 <PhoneCall className="h-4 w-4 mr-2" />
-                <span><strong>Hotline:</strong> 0909 123 456</span>
+                <a href="tel:0387560769" className="hover:text-brand-yellow"><strong>Hotline:</strong> 0387 560 769</a>
               </div>
               <div className="flex items-center">
                 <Mail className="h-4 w-4 mr-2" />
-                <span>info@taxitiengiang.com</span>
+                <span>info@taxitiengianggocong.com</span>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -66,7 +65,7 @@ const Navbar = () => {
               <a href="/" className="flex items-center">
                 <div className="font-bold text-2xl">
                   <span className="text-brand-blue">Taxi </span>
-                  <span className="text-brand-yellow">Tiền Giang</span>
+                  <span className="text-brand-yellow">Tiền Giang - Gò Công</span>
                 </div>
               </a>
             </div>
@@ -78,9 +77,11 @@ const Navbar = () => {
               <a href="#services" className="text-gray-800 hover:text-brand-blue font-medium">Dịch vụ</a>
               <a href="#cars" className="text-gray-800 hover:text-brand-blue font-medium">Xe</a>
               <a href="#contact" className="text-gray-800 hover:text-brand-blue font-medium">Liên hệ</a>
-              <Button className="bg-brand-yellow hover:bg-yellow-500 text-brand-darkBlue font-bold">
-                <PhoneCall className="mr-2 h-4 w-4" />
-                <span><strong>Hotline:</strong> 0909 123 456</span>
+              <Button asChild className="bg-brand-yellow hover:bg-yellow-500 text-brand-darkBlue font-bold">
+                <a href="tel:0387560769">
+                  <PhoneCall className="mr-2 h-4 w-4" />
+                  <strong>Hotline:</strong> 0387 560 769
+                </a>
               </Button>
             </div>
 
@@ -112,9 +113,11 @@ const Navbar = () => {
               <a href="#contact" className="text-gray-800 hover:text-brand-blue font-medium px-4 py-2 rounded-md hover:bg-gray-100" onClick={() => setIsMobileMenuOpen(false)}>
                 Liên hệ
               </a>
-              <Button className="bg-brand-yellow hover:bg-yellow-500 text-brand-darkBlue font-bold w-full">
-                <PhoneCall className="mr-2 h-4 w-4" />
-                <span><strong>Hotline:</strong> 0909 123 456</span>
+              <Button asChild className="bg-brand-yellow hover:bg-yellow-500 text-brand-darkBlue font-bold w-full">
+                <a href="tel:0387560769">
+                  <PhoneCall className="mr-2 h-4 w-4" />
+                  <strong>Hotline:</strong> 0387 560 769
+                </a>
               </Button>
             </div>
           </div>
