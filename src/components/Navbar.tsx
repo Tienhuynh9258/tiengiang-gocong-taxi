@@ -65,7 +65,7 @@ const Navbar = () => {
             <div className="flex items-center">
               <a href="/" className="flex items-center">
                 <div className="font-bold text-2xl">
-                  <span className="text-brand-blue">Taxi</span>
+                  <span className="text-brand-blue">Taxi </span>
                   <span className="text-brand-yellow">Tiền Giang</span>
                 </div>
               </a>
