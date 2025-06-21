@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -8,49 +7,33 @@ import AboutSection from '@/components/AboutSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import CarCard from '@/components/CarCard';
+import BookingFormSection from '@/components/BookingFormSection';
 
 const Index = () => {
   // Sample car data for the car listing section
   const cars = [
     {
       id: 1,
-      name: 'Sedan 4 Chỗ',
-      image: 'https://taxiquangnam.io.vn/wp-content/uploads/2023/08/4cho.jpg',
-      price: '200.000 VNĐ',
+      name: 'Xe 4 Chỗ',
+      image: '/images/car1.jpeg',
       seats: 4,
       features: ['Máy lạnh', 'Wifi miễn phí', 'Nước uống', 'Tài xế chuyên nghiệp'],
       isPopular: true
     },
     {
       id: 2,
-      name: 'SUV 7 Chỗ',
-      image: 'https://taxiquangnam.io.vn/wp-content/uploads/2023/08/7cho.jpg',
-      price: '350.000 VNĐ',
+      name: 'Xe 7 Chỗ',
+      image: '/images/car2.jpg',
       seats: 7,
       features: ['Máy lạnh', 'Wifi miễn phí', 'Nước uống', 'Rộng rãi']
-    },
-    {
-      id: 3,
-      name: 'Xe 16 Chỗ',
-      image: 'https://taxiquangnam.io.vn/wp-content/uploads/2023/08/16cho.jpg',
-      price: '700.000 VNĐ',
-      seats: 16,
-      features: ['Máy lạnh', 'Wifi miễn phí', 'Phù hợp nhóm lớn', 'Hành lý rộng rãi']
-    },
-    {
-      id: 4,
-      name: 'Xe VIP',
-      image: 'https://taxiquangnam.io.vn/wp-content/uploads/2023/08/vip.jpg',
-      price: '500.000 VNĐ',
-      seats: 4,
-      features: ['Ghế da cao cấp', 'Wifi tốc độ cao', 'Nước uống & snack', 'Tài xế VIP']
     }
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen scroll-smooth">
       <Navbar />
       <Hero />
+      <BookingFormSection />
       
       {/* About Section First */}
       <AboutSection />
@@ -59,25 +42,23 @@ const Index = () => {
       <ServiceBenefits />
       
       {/* Car Listing Section */}
-      <section id="cars" className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4">
+      <section id="cars" className="py-16 bg-gray-100 flex justify-center">
+        <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">CÁC LOẠI XE CỦA CHÚNG TÔI</h2>
             <div className="flex justify-center">
               <div className="h-1 w-20 bg-brand-yellow"></div>
             </div>
             <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-              Đa dạng các loại xe từ 4 đến 16 chỗ, đáp ứng mọi nhu cầu di chuyển của bạn
+              Đa dạng các loại xe 4 chỗ và 7 chỗ, đáp ứng mọi nhu cầu di chuyển của bạn
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center items-stretch">
             {cars.map((car) => (
               <CarCard 
                 key={car.id}
                 name={car.name}
                 image={car.image}
-                price={car.price}
                 seats={car.seats}
                 features={car.features}
                 isPopular={car.isPopular}

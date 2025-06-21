@@ -1,73 +1,55 @@
-# Welcome to your Lovable project
+# Website Taxi Gò Công - Tiền Giang
 
-## Project info
+Đây là mã nguồn cho website của dịch vụ Taxi Gò Công - Tiền Giang. Trang web được xây dựng với mục tiêu cung cấp một giao diện hiện đại, chuyên nghiệp và thân thiện với người dùng để giới thiệu dịch vụ và cho phép khách hàng đặt xe trực tuyến một cách dễ dàng.
 
-**URL**: https://lovable.dev/projects/85a522a7-85ed-4448-aead-a7c4e9daed73
+## ✨ Tính Năng Nổi Bật
 
-## How can I edit this code?
+- **Giao diện Hiện Đại**: Thiết kế sạch sẽ, chuyên nghiệp và hoàn toàn đáp ứng (responsive) trên mọi thiết bị từ máy tính để bàn đến điện thoại di động.
+- **Đặt Xe Online**: Biểu mẫu đặt xe thông minh, cho phép khách hàng dễ dàng gửi yêu cầu đặt xe với các thông tin cần thiết.
+- **Giới Thiệu Dịch Vụ**: Trình bày rõ ràng các gói dịch vụ chính: taxi nội thành, taxi đường dài, taxi du lịch và taxi hợp đồng.
+- **Thông Tin Chi Tiết**: Cung cấp các thông tin hữu ích cho khách hàng như:
+    - Lý do lựa chọn dịch vụ (cam kết về giá cả, tài xế, chất lượng xe).
+    - Giới thiệu về đội xe (xe 4 chỗ, 7 chỗ).
+    - Thông tin liên hệ rõ ràng (số điện thoại, Zalo).
+- **Tối ưu Trải Nghiệm Người Dùng**: Tích hợp các nút liên hệ nhanh (gọi điện, Zalo) và nút quay lại đầu trang, giúp người dùng tương tác thuận tiện.
 
-There are several ways of editing your application.
+## 🚀 Công Nghệ Sử Dụng
 
-**Use Lovable**
+Dự án được xây dựng với các công nghệ web hiện đại nhất để đảm bảo hiệu suất và khả năng bảo trì:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/85a522a7-85ed-4448-aead-a7c4e9daed73) and start prompting.
+- **Framework**: [React](https://reactjs.org/) (thông qua [Vite](https://vitejs.dev/))
+- **Ngôn ngữ**: [TypeScript](https://www.typescriptlang.org/)
+- **Giao diện người dùng (UI)**: [shadcn/ui](https://ui.shadcn.com/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Quản lý Biểu mẫu**: [React Hook Form](https://react-hook-form.com/) & [Zod](https://zod.dev/)
+- **Routing**: [React Router](https://reactrouter.com/)
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Cài Đặt và Chạy Dự Án
 
-**Use your preferred IDE**
+Để chạy dự án này trên máy của bạn, hãy làm theo các bước sau:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1.  **Clone a repository**
+    ```bash
+    git clone https://github.com/your-username/tiengiang-gocong-taxi.git
+    ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+2.  **Di chuyển vào thư mục dự án**
+    ```bash
+    cd tiengiang-gocong-taxi
+    ```
 
-Follow these steps:
+3.  **Cài đặt các dependencies**
+    ```bash
+    npm install
+    ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+4.  **Chạy development server**
+    ```bash
+    npm run dev
+    ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+    Mở [http://localhost:5173](http://localhost:5173) (hoặc một cổng khác nếu 5173 đã được sử dụng) trên trình duyệt để xem trang web.
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🤝 Đóng Góp
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/85a522a7-85ed-4448-aead-a7c4e9daed73) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Nếu bạn có ý tưởng để cải thiện dự án, vui lòng tạo một Pull Request. Mọi sự đóng góp đều được chào đón!

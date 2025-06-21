@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, PhoneCall } from 'lucide-react';
@@ -9,19 +8,19 @@ const Hero = () => {
   const slides = [
     {
       id: 1,
-      image: "https://taxiquangnam.io.vn/wp-content/uploads/2023/08/slide1.jpg",
-      title: "Taxi Tiền Giang",
-      subtitle: "Dịch vụ taxi uy tín, chất lượng cao tại Tiền Giang"
+      image: "/images/hero1.jpeg",
+      title: "Taxi Tiền Giang - Gò Công",
+      subtitle: "Dịch vụ taxi uy tín, chất lượng cao tại Gò Công"
     },
     {
       id: 2,
-      image: "https://taxiquangnam.io.vn/wp-content/uploads/2023/08/slide2.jpg",
+      image: "/images/hero2.jpg",
       title: "Đa dạng phương tiện",
-      subtitle: "Nhiều loại xe từ 4 đến 16 chỗ đáp ứng mọi nhu cầu"
+      subtitle: "Nhiều loại xe từ 4 đến 7 chỗ đáp ứng mọi nhu cầu"
     },
     {
       id: 3,
-      image: "https://taxiquangnam.io.vn/wp-content/uploads/2023/08/slide3.jpg",
+      image: "/images/hero3.webp",
       title: "Giá cả hợp lý",
       subtitle: "Bảng giá minh bạch, không phát sinh chi phí"
     }
