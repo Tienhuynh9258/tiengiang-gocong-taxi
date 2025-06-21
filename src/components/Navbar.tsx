@@ -62,8 +62,9 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <a href="/" className="flex items-center">
-                <div className="font-bold text-2xl">
+              <a href="/" className="flex items-center gap-3">
+                <img src="/images/logo.png" alt="Taxi Tiền Giang - Gò Công Logo" className="h-14 w-auto" />
+                <div className="font-bold text-xl md:text-2xl">
                   <span className="text-brand-blue">Taxi </span>
                   <span className="text-brand-yellow">Tiền Giang - Gò Công</span>
                 </div>
