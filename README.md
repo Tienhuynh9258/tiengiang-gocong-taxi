@@ -39,16 +39,23 @@ Dự án được xây dựng với các công nghệ web hiện đại nhất �
     ```
 
 3.  **Cài đặt các dependencies**
+    *Lưu ý: Bạn cần cài đặt Vercel CLI nếu chưa có: `npm install -g vercel`*
     ```bash
     npm install
     ```
 
-4.  **Chạy development server**
+4. **Tạo file môi trường**
+   Tạo một file có tên `.env` ở thư mục gốc của dự án và thêm các biến môi trường cần thiết. Ví dụ:
+   ```env
+   RESEND_API_KEY=your_api_key_here
+   ```
+
+5.  **Chạy development server với Vercel**
     ```bash
-    npm run dev
+    vercel dev
     ```
 
-    Mở [http://localhost:5173](http://localhost:5173) (hoặc một cổng khác nếu 5173 đã được sử dụng) trên trình duyệt để xem trang web.
+    Mở [http://localhost:3000](http://localhost:3000) trên trình duyệt để xem trang web.
 
 ## 🤝 Đóng Góp
 

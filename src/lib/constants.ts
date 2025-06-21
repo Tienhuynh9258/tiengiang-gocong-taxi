@@ -1,8 +1,8 @@
 // Thông tin tĩnh cho Footer
 export const FOOTER_CONTACT = {
-  address: '123 Đại lộ Lê Lợi, TP. Mỹ Tho, Tiền Giang',
-  phones: ['0909 123 456', '0909 456 789'],
-  emails: ['info@taxitiengiang.com', 'support@taxitiengiang.com'],
+  address: '3/2B, khu phố 6, phường 2, TP. Gò Công, Tiền Giang',
+  phones: ['0387 560 769', '0948 262 223'],
+  emails: ['info@taxitiengianggocong.com', 'support@taxitiengianggocong.com'],
 };
 
 export const FOOTER_SOCIALS = [

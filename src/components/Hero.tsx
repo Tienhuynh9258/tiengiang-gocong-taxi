@@ -67,9 +67,11 @@ const Hero = () => {
                 <p className="text-xl text-white mb-8 max-w-3xl mx-auto text-shadow">
                   {slide.subtitle}
                 </p>
-                <Button className="bg-brand-yellow hover:bg-yellow-400 text-brand-darkBlue font-semibold text-lg px-8 py-6 rounded shadow-lg">
-                  <PhoneCall className="mr-2 h-5 w-5" />
-                  Gọi Ngay: 0909 123 456
+                <Button asChild className="bg-brand-yellow hover:bg-yellow-400 text-brand-darkBlue font-semibold text-lg px-8 py-6 rounded shadow-lg">
+                  <a href="tel:0387560769">
+                    <PhoneCall className="mr-2 h-5 w-5" />
+                    Gọi Ngay: 0387 560 769
+                  </a>
                 </Button>
               </div>
             </div>

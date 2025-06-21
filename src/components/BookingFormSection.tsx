@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, User, Car, Calendar, FileText, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { MapPin, Phone, User, Car, Calendar, FileText, Globe, AlertCircle, CheckCircle, XCircle, Loader2 } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
@@ -17,34 +17,44 @@ import toast, { Toaster } from 'react-hot-toast';
 import { bookingFieldStyles } from "@/constants/bookingFieldStyles";
 
 const BookingFormSection = () => {
+  const [name, setName] = useState('');
+  const [nameError, setNameError] = useState('');
   const [bookingType, setBookingType] = useState('taxi');
   const [pickupLocation, setPickupLocation] = useState('');
-  const [pickupAddressDetail, setPickupAddressDetail] = useState('');
   const [pickupLocationError, setPickupLocationError] = useState('');
+  const [pickupAddressDetail, setPickupAddressDetail] = useState('');
   const [pickupAddressDetailError, setPickupAddressDetailError] = useState('');
+  const [destination, setDestination] = useState('');
+  const [destinationError, setDestinationError] = useState('');
+  const [carOption, setCarOption] = useState('');
+  const [carOptionError, setCarOptionError] = useState('');
   const [pickupDate, setPickupDate] = useState<Date | null>(null);
   const [pickupDateError, setPickupDateError] = useState('');
   const [phone, setPhone] = useState('');
-  const [phoneValid, setPhoneValid] = useState<boolean | null>(null);
   const [phoneError, setPhoneError] = useState('');
+  const [phoneValid, setPhoneValid] = useState<boolean | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const resetForm = () => {
+    setName('');
+    setNameError('');
     setBookingType('taxi');
     setPickupLocation('');
-    setPickupAddressDetail('');
     setPickupLocationError('');
+    setPickupAddressDetail('');
     setPickupAddressDetailError('');
+    setDestination('');
+    setDestinationError('');
+    setCarOption('');
+    setCarOptionError('');
     setPickupDate(null);
     setPickupDateError('');
     setPhone('');
-    setPhoneValid(null);
     setPhoneError('');
-    // Nếu có các trường khác, reset tại đây
+    setPhoneValid(null);
   };
 
   const validatePhone = (value: string) => {
-    // Vietnamese phone: 10 digits, starts with 0
     const regex = /^0\d{9}$/;
     return regex.test(value);
   };
@@ -60,30 +70,35 @@ const BookingFormSection = () => {
       setPhoneError('');
     } else {
       setPhoneValid(false);
-      setPhoneError('Số điện thoại không hợp lệ, đúng 10 chữ số');
+      setPhoneError('Số điện thoại không hợp lệ (gồm 10 chữ số)');
     }
   };
 
-  const handleBookingSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const validateForm = () => {
     let valid = true;
     if (!pickupLocation) {
       setPickupLocationError('Vui lòng chọn điểm đón');
       valid = false;
     } else {
       setPickupLocationError('');
+      if (!pickupAddressDetail) {
+        setPickupAddressDetailError('Vui lòng nhập số nhà, tên đường');
+        valid = false;
+      } else {
+        setPickupAddressDetailError('');
+      }
     }
-    if (!pickupAddressDetail) {
-      setPickupAddressDetailError('Vui lòng nhập địa chỉ chi tiết');
+    if (!destination) {
+      setDestinationError('Vui lòng nhập điểm đến');
       valid = false;
     } else {
-      setPickupAddressDetailError('');
+      setDestinationError('');
     }
-    if (!pickupDate) {
-      setPickupDateError('Vui lòng chọn ngày giờ đón');
+    if (!name) {
+      setNameError('Vui lòng nhập họ và tên');
       valid = false;
     } else {
-      setPickupDateError('');
+      setNameError('');
     }
     if (!phone || !validatePhone(phone)) {
       setPhoneError('Số điện thoại không hợp lệ');
@@ -93,10 +108,85 @@ const BookingFormSection = () => {
       setPhoneError('');
       setPhoneValid(true);
     }
-    if (!valid) return;
+    if (!carOption) {
+      setCarOptionError('Vui lòng chọn loại xe');
+      valid = false;
+    } else {
+      setCarOptionError('');
+    }
+    if (!pickupDate) {
+      setPickupDateError('Vui lòng chọn ngày giờ đón');
+      valid = false;
+    } else {
+      setPickupDateError('');
+    }
+    return valid;
+  };
+
+  const locationMap: { [key: string]: string } = {
+    'cho-gao': 'Chợ Gạo',
+    'go-cong': 'Gò Công',
+  };
+
+  const carOptionMap: { [key: string]: string } = {
+    'xe-4-cho': 'Xe 4 chỗ',
+    'xe-7-cho': 'Xe 7 chỗ',
+  };
+
+  const serviceTypeMap: { [key: string]: string } = {
+      'taxi': 'Taxi',
+      'du-lich': 'Du lịch',
+      'hop-dong': 'Hợp đồng'
+  };
+
+  const formatDateTime = (date: Date | null): string => {
+    if (!date) return '';
+    const dateOptions: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    const timeOptions: Intl.DateTimeFormatOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+    const datePart = date.toLocaleDateString('vi-VN', dateOptions);
+    const timePart = date.toLocaleTimeString('vi-VN', timeOptions);
+    return `${datePart} ${timePart}`;
+  }
+
+  const handleBookingSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateForm()) {
+      toast.error(
+        <div style={{lineHeight: 1.35}}>
+          <div style={{fontSize: '1.08em', fontWeight: 500}}>Vui lòng kiểm tra lại thông tin</div>
+          <div style={{fontSize: '0.98em', fontWeight: 400}}>Một vài trường bắt buộc chưa được điền.</div>
+        </div>
+      );
+      return;
+    }
+
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    const bookingDetails = {
+      name,
+      phone,
+      pickupLocation: `${pickupAddressDetail}, ${locationMap[pickupLocation] || pickupLocation}`,
+      destination,
+      serviceType: serviceTypeMap[bookingType] || bookingType,
+      carOption: carOptionMap[carOption] || carOption,
+      pickupDateTime: formatDateTime(pickupDate),
+    };
+
+    try {
+      const response = await fetch('/api/book', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bookingDetails),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Có lỗi xảy ra khi đặt xe.');
+      }
+      
       toast.success(
         <div style={{lineHeight: 1.35}}>
           <div style={{fontSize: '1.08em', fontWeight: 500}}>Đặt xe thành công!</div>
@@ -105,35 +195,36 @@ const BookingFormSection = () => {
         {
           duration: 4000,
           position: 'top-right',
-          style: {
-            border: '2px solid #22c55e',
-            borderRadius: '18px',
-            background: 'linear-gradient(90deg, #f0fdf4 80%, #bbf7d0 100%)',
-            color: '#166534',
-            fontWeight: 500,
-            fontSize: '1.08rem',
-            boxShadow: '0 6px 32px 0 rgba(34,197,94,0.18)',
-            padding: '18px 22px 18px 18px',
-            minWidth: '260px',
-            maxWidth: '95vw',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '14px',
-            animation: 'slideInRight 0.5s',
-          },
-          icon: (
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="12" fill="#22c55e"/>
-              <path d="M8 12.5L11 15.5L16 9.5" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          ),
         }
       );
       resetForm();
-    }, 1500);
-    // In a real app, this would send the booking request
-    console.log('Booking form submitted');
+
+    } catch (error: any) {
+      toast.error(
+        <div style={{lineHeight: 1.35}}>
+          <div style={{fontSize: '1.08em', fontWeight: 500}}>Đặt xe thất bại</div>
+          <div style={{fontSize: '0.98em', fontWeight: 400}}>{error.message}</div>
+        </div>
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  const CustomDateInput = forwardRef<HTMLButtonElement, { value?: string; onClick?: () => void }>(
+    ({ value, onClick }, ref) => (
+      <button
+        type="button"
+        onClick={onClick}
+        ref={ref}
+        className="w-full p-2 border-[1px] rounded-md focus:border-teal-500 focus:ring-2 focus:ring-teal-200 text-left font-normal placeholder:text-gray-400 flex items-center"
+        style={{ borderColor: bookingFieldStyles.pickupDateTime.color }}
+      >
+        {value || <span className="text-gray-400">Chọn ngày giờ đón</span>}
+      </button>
+    )
+  );
+  CustomDateInput.displayName = "CustomDateInput";
 
   return (
     <>
@@ -192,7 +283,7 @@ const BookingFormSection = () => {
                   })}
                   <label className="block text-gray-700">Điểm đón</label>
                 </div>
-                <Select value={pickupLocation} onValueChange={setPickupLocation} required>
+                <Select value={pickupLocation} onValueChange={(value) => { setPickupLocation(value); setPickupLocationError(''); }} required>
                   <SelectTrigger
                     className={`border-[1px] focus:border-blue-400 focus:ring-2 focus:ring-blue-200`}
                     style={{ borderColor: bookingFieldStyles.pickupLocation.color }}
@@ -214,7 +305,7 @@ const BookingFormSection = () => {
                       className="border-[1px] focus:border-blue-500 focus:shadow-none outline-none ring-0 focus:outline-none focus:ring-0 placeholder:text-base placeholder:text-gray-400"
                       style={{ borderColor: bookingFieldStyles.pickupLocation.color }}
                       value={pickupAddressDetail}
-                      onChange={e => setPickupAddressDetail(e.target.value)}
+                      onChange={e => { setPickupAddressDetail(e.target.value); setPickupAddressDetailError(''); }}
                       required
                     />
                     {pickupAddressDetailError && (
@@ -235,20 +326,26 @@ const BookingFormSection = () => {
                   placeholder="Nhập địa điểm đến"
                   className="border-[1px] focus:border-orange-500 focus:shadow-none outline-none ring-0 focus:outline-none focus:ring-0 placeholder:text-base placeholder:text-gray-400"
                   style={{ borderColor: bookingFieldStyles.destination.color }}
+                  value={destination}
+                  onChange={(e) => { setDestination(e.target.value); setDestinationError(''); }}
                   required
                 />
+                {destinationError && (
+                  <div className="flex items-center text-red-500 text-sm mt-1"><AlertCircle className="w-4 h-4 mr-1" />{destinationError}</div>
+                )}
               </div>
             </div>
             <div className="py-2">
               <label className="block text-gray-700 font-medium mb-2">Chọn loại dịch vụ</label>
               <RadioGroup
                 defaultValue="taxi"
-                className="flex gap-6"
+                className="flex items-center gap-6 flex-wrap"
+                value={bookingType}
                 onValueChange={setBookingType}
               >
                 <div className="flex items-center space-x-2">
                   {React.createElement(bookingFieldStyles.bookingType.taxi.icon, {
-                    className: "h-5 w-5",
+                    className: "h-5 w-5 mr-2",
                     style: { color: bookingFieldStyles.bookingType.taxi.color },
                   })}
                   <RadioGroupItem value="taxi" id="taxi" />
@@ -256,37 +353,42 @@ const BookingFormSection = () => {
                 </div>
                 <div className="flex items-center space-x-2">
                   {React.createElement(bookingFieldStyles.bookingType.dulich.icon, {
-                    className: "h-5 w-5",
+                    className: "h-5 w-5 mr-2",
                     style: { color: bookingFieldStyles.bookingType.dulich.color },
                   })}
-                  <RadioGroupItem value="dulich" id="dulich" />
-                  <Label htmlFor="dulich">Du lịch</Label>
+                  <RadioGroupItem value="du-lich" id="du-lich" />
+                  <Label htmlFor="du-lich">Du lịch</Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   {React.createElement(bookingFieldStyles.bookingType.hopdong.icon, {
-                    className: "h-5 w-5",
+                    className: "h-5 w-5 mr-2",
                     style: { color: bookingFieldStyles.bookingType.hopdong.color },
                   })}
-                  <RadioGroupItem value="hopdong" id="hopdong" />
-                  <Label htmlFor="hopdong">Hợp đồng</Label>
+                  <RadioGroupItem value="hop-dong" id="hop-dong" />
+                  <Label htmlFor="hop-dong">Hợp đồng</Label>
                 </div>
               </RadioGroup>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <div className="flex items-center mb-2">
-                  {React.createElement(bookingFieldStyles.fullName.icon, {
+                  {React.createElement(bookingFieldStyles.name.icon, {
                     className: "h-5 w-5 mr-2",
-                    style: { color: bookingFieldStyles.fullName.color },
+                    style: { color: bookingFieldStyles.name.color },
                   })}
                   <label className="block text-gray-700">Họ và tên</label>
                 </div>
                 <Input
                   placeholder="Nhập họ và tên"
                   className="border-[1px] focus:border-red-500 focus:shadow-none outline-none ring-0 focus:outline-none focus:ring-0 placeholder:text-base placeholder:text-gray-400"
-                  style={{ borderColor: bookingFieldStyles.fullName.color }}
+                  style={{ borderColor: bookingFieldStyles.name.color }}
+                  value={name}
+                  onChange={(e) => { setName(e.target.value); setNameError(''); }}
                   required
                 />
+                {nameError && (
+                  <div className="flex items-center text-red-500 text-sm mt-1"><AlertCircle className="w-4 h-4 mr-1" />{nameError}</div>
+                )}
               </div>
               <div>
                 <div className="flex items-center mb-2">
@@ -298,25 +400,26 @@ const BookingFormSection = () => {
                 </div>
                 <div className="relative">
                   <Input
-                    type="tel"
                     placeholder="Nhập số điện thoại"
-                    className={`border-[1px] pr-10 focus:border-purple-500 focus:shadow-none outline-none ring-0 focus:outline-none focus:ring-0 placeholder:text-base placeholder:text-gray-400 ${phoneValid === false ? 'border-red-500' : phoneValid === true ? 'border-green-500' : ''}`}
-                    style={{ borderColor: bookingFieldStyles.phone.color }}
+                    className={`border-[1px] focus:border-purple-500 focus:shadow-none outline-none ring-0 focus:outline-none focus:ring-0 placeholder:text-base placeholder:text-gray-400 ${phoneValid === false ? 'border-red-500' : phoneValid === true ? 'border-green-500' : ''}`}
+                    style={{ borderColor: phoneValid === null ? bookingFieldStyles.phone.color : '' }}
                     value={phone}
                     onChange={handlePhoneChange}
                     required
                   />
                   {phoneValid === true && (
-                    <CheckCircle className="absolute right-2 top-1/2 -translate-y-1/2 text-green-500 w-5 h-5" />
+                    <CheckCircle className="absolute right-3 top-1/2 -translate-y-1/2 text-green-500 w-5 h-5" />
                   )}
                   {phoneValid === false && (
-                    <XCircle className="absolute right-2 top-1/2 -translate-y-1/2 text-red-500 w-5 h-5" />
+                    <XCircle className="absolute right-3 top-1/2 -translate-y-1/2 text-red-500 w-5 h-5" />
                   )}
                 </div>
                 {phoneError && (
                   <div className="flex items-center text-red-500 text-sm mt-1"><AlertCircle className="w-4 h-4 mr-1" />{phoneError}</div>
                 )}
               </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <div className="flex items-center mb-2">
                   {React.createElement(bookingFieldStyles.carOption.icon, {
@@ -325,37 +428,40 @@ const BookingFormSection = () => {
                   })}
                   <label className="block text-gray-700">Tùy chọn xe</label>
                 </div>
-                <Select>
+                <Select value={carOption} onValueChange={(value) => { setCarOption(value); setCarOptionError(''); }} required>
                   <SelectTrigger
-                    className="border-[1px] focus:border-sky-400 focus:shadow-none outline-none ring-0 focus:outline-none focus:ring-0"
+                    className={`border-[1px] focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200`}
                     style={{ borderColor: bookingFieldStyles.carOption.color }}
                   >
                     <SelectValue placeholder="Tùy chọn xe" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="xe4">Xe 4 Chỗ</SelectItem>
-                    <SelectItem value="xe7">Xe 7 Chỗ</SelectItem>
+                    <SelectItem value="xe-4-cho">Xe 4 chỗ</SelectItem>
+                    <SelectItem value="xe-7-cho">Xe 7 chỗ</SelectItem>
                   </SelectContent>
                 </Select>
+                {carOptionError && (
+                  <div className="flex items-center text-red-500 text-sm mt-1"><AlertCircle className="w-4 h-4 mr-1" />{carOptionError}</div>
+                )}
               </div>
               <div>
                 <div className="flex items-center mb-2">
-                  {React.createElement(bookingFieldStyles.pickupDate.icon, {
+                  {React.createElement(bookingFieldStyles.pickupDateTime.icon, {
                     className: "h-5 w-5 mr-2",
-                    style: { color: bookingFieldStyles.pickupDate.color },
+                    style: { color: bookingFieldStyles.pickupDateTime.color },
                   })}
                   <label className="block text-gray-700">Ngày giờ đón</label>
                 </div>
                 <DatePicker
                   selected={pickupDate}
-                  onChange={(date: Date | null) => setPickupDate(date)}
+                  onChange={(date: Date | null) => { setPickupDate(date); setPickupDateError(''); }}
                   showTimeSelect
+                  minDate={new Date()}
+                  dateFormat="dd/MM/yyyy HH:mm"
                   timeFormat="HH:mm"
                   timeIntervals={15}
-                  dateFormat="dd-MM-yyyy HH:mm"
-                  placeholderText="Chọn ngày giờ đón"
-                  className={`border-[1px] rounded-md px-3 py-2 w-full focus:outline-none focus:ring-0 focus:shadow-none outline-none ring-0 placeholder:text-base placeholder:text-gray-400 border-teal-500`}
-                  minDate={new Date()}
+                  customInput={<CustomDateInput />}
+                  wrapperClassName="w-full"
                   required
                 />
                 {pickupDateError && (
@@ -363,19 +469,14 @@ const BookingFormSection = () => {
                 )}
               </div>
             </div>
-            <div className="pt-4 flex justify-center">
-              <Button type="submit" disabled={isSubmitting} className="w-full md:w-auto px-8 py-3 bg-brand-yellow hover:bg-yellow-500 text-brand-darkBlue font-bold rounded-full text-lg flex items-center justify-center">
+            <div className="text-center pt-4">
+              <Button type="submit" size="lg" className="bg-yellow-400 text-black hover:bg-yellow-500 font-bold text-lg px-8 min-w-[150px]" disabled={isSubmitting}>
                 {isSubmitting ? (
-                  <>
-                    <svg className="animate-spin h-5 w-5 mr-2 text-brand-darkBlue" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
-                    </svg>
-                    Đang gửi...
-                  </>
-                ) : (
-                  'Đặt xe'
-                )}
+                  <span className="flex items-center justify-center">
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    Đang xử lý...
+                  </span>
+                ) : 'Đặt xe'}
               </Button>
             </div>
           </form>
