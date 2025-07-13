@@ -35,7 +35,7 @@
               <img 
                 ref={imgRef}
                 src="/images/intro_car.png" 
-                alt="Taxi Tiền Giang - Gò Công" 
+                alt="Taxi Gò Công - Tiền Giang" 
                 className={`w-full h-auto max-w-4xl mx-auto ${inView ? 'animate-fadeZoomIn' : ''}`}
                 style={{ width: '100%', height: 'auto' }}
               />
@@ -43,16 +43,16 @@
             
             <div className="order-1 lg:order-2">
               <div className="mb-6">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">GIỚI THIỆU VỀ TAXI TIỀN GIANG - GÒ CÔNG</h2>
+                <h2 className="text-3xl font-bold text-gray-800 mb-4">GIỚI THIỆU VỀ TAXI GÒ CÔNG - TIỀN GIANG</h2>
                 <div className="h-1 w-20 bg-brand-yellow mb-6"></div>
               </div>
               
               <p className="text-gray-600 mb-6">
-                Taxi Tiền Giang - Gò Công được thành lập vào năm 2025, là đơn vị hàng đầu trong lĩnh vực vận tải hành khách bằng taxi tại tỉnh Tiền Giang. Với đội xe hiện đại, đa dạng từ 4 đến 7 chỗ, chúng tôi tự hào mang đến cho khách hàng dịch vụ vận chuyển chất lượng cao, đáp ứng mọi nhu cầu di chuyển.
+                Taxi Gò Công - Tiền Giang được thành lập vào năm 2025, là đơn vị hàng đầu trong lĩnh vực vận tải hành khách bằng taxi tại tỉnh Tiền Giang. Với đội xe hiện đại, đa dạng từ 4 đến 7 chỗ, chúng tôi tự hào mang đến cho khách hàng dịch vụ vận chuyển chất lượng cao, đáp ứng mọi nhu cầu di chuyển.
               </p>
               
               <p className="text-gray-600 mb-6">
-                Với phương châm "An toàn - Tận tâm - Chuyên nghiệp", Taxi Tiền Giang - Gò Công không ngừng nâng cao chất lượng dịch vụ, đảm bảo mỗi hành trình của khách hàng đều thoải mái và an toàn nhất.
+                Với phương châm "An toàn - Tận tâm - Chuyên nghiệp", Taxi Gò Công - Tiền Giang không ngừng nâng cao chất lượng dịch vụ, đảm bảo mỗi hành trình của khách hàng đều thoải mái và an toàn nhất.
               </p>
               
               <p className="text-gray-600 mb-8">

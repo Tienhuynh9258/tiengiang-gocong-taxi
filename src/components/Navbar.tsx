@@ -38,7 +38,7 @@ const Navbar = () => {
               </div>
               <div className="flex items-center">
                 <Mail className="h-4 w-4 mr-2" />
-                <span>info@taxitiengianggocong.com</span>
+                <span>taxigocongtiengiang@gmail.com</span>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -63,10 +63,10 @@ const Navbar = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <a href="/" className="flex items-center gap-3">
-                <img src="/images/logo.png" alt="Taxi Tiền Giang - Gò Công Logo" className="h-14 w-auto" />
+                <img src="/images/logo.png" alt="Taxi Gò Công - Tiền Giang Logo" className="h-14 w-auto" />
                 <div className="font-bold text-xl md:text-2xl">
                   <span className="text-brand-blue">Taxi </span>
-                  <span className="text-brand-yellow">Tiền Giang - Gò Công</span>
+                  <span className="text-brand-yellow">Gò Công - Tiền Giang</span>
                 </div>
               </a>
             </div>

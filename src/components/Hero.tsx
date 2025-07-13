@@ -9,7 +9,7 @@ const Hero = () => {
     {
       id: 1,
       image: "/images/hero1.jpeg",
-      title: "Taxi Tiền Giang - Gò Công",
+      title: "Taxi Gò Công - Tiền Giang",
       subtitle: "Dịch vụ taxi uy tín, chất lượng cao tại Gò Công"
     },
     {
