@@ -1,8 +1,23 @@
 import { Resend } from 'resend';
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export default async function handler(req, res) {
+// Use ES module export syntax
+export default async function handler(
+  req: VercelRequest,
+  res: VercelResponse
+) {
+  // Add CORS headers for production
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
@@ -11,6 +26,20 @@ export default async function handler(req, res) {
 
   if (!bookingDetails) {
     return res.status(400).json({ message: 'Missing booking details' });
+  }
+
+  // Validate required fields
+  const requiredFields = ['name', 'phone', 'pickupLocation', 'destination', 'serviceType', 'carOption', 'pickupDateTime'];
+  for (const field of requiredFields) {
+    if (!bookingDetails[field]) {
+      return res.status(400).json({ message: `Missing required field: ${field}` });
+    }
+  }
+
+  // Check if RESEND_API_KEY is configured
+  if (!process.env.RESEND_API_KEY) {
+    console.error('RESEND_API_KEY is not configured');
+    return res.status(500).json({ message: 'Email service not configured' });
   }
 
   try {
@@ -86,13 +115,17 @@ export default async function handler(req, res) {
     });
 
     if (error) {
-      console.error({ error });
-      return res.status(400).json({ message: 'Error sending email', error });
+      console.error('Resend error:', error);
+      return res.status(400).json({ message: 'Error sending email', error: error.message });
     }
 
+    console.log('Email sent successfully:', data);
     return res.status(200).json({ message: 'Booking successful!', data });
-  } catch (exception) {
-    console.error({ exception });
-    return res.status(500).json({ message: 'An unexpected error occurred.', error: exception.message });
+  } catch (exception: any) {
+    console.error('Unexpected error:', exception);
+    return res.status(500).json({ 
+      message: 'An unexpected error occurred.', 
+      error: exception.message || 'Unknown error'
+    });
   }
 } 
