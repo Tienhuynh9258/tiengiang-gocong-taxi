@@ -15,9 +15,9 @@ export default async function handler(req, res) {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'Info <onboarding@resend.dev>',
-      to: ['huynhtien9258@gmail.com'],
-      subject: `[ĐẶT XE MỚI] - ${bookingDetails.name} - ${bookingDetails.phone}`,
+      from: 'ĐẶT XE MỚI <info@taxigocong.com>',
+      to: ['taxigocongtiengiang@gmail.com'],
+      subject: `[THÔNG TIN: ${bookingDetails.name} - ${bookingDetails.phone}]`,
       html: `
         <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px;">
           <table width="100%" border="0" cellspacing="0" cellpadding="0">

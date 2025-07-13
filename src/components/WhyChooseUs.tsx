@@ -40,7 +40,7 @@ const WhyChooseUs = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-800 mb-4">
-            TẠI SAO CHỌN <span className="text-brand-yellow">TAXI TIỀN GIANG - GÒ CÔNG?</span>
+            TẠI SAO CHỌN <span className="text-brand-yellow">TAXI GÒ CÔNG - TIỀN GIANG?</span>
           </h2>
           <div className="flex justify-center">
             <div className="h-1 w-20 bg-brand-yellow"></div>

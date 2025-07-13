@@ -38,7 +38,7 @@ const ServiceBenefits = () => {
             <div className="h-1 w-20 bg-brand-yellow rounded-full"></div>
           </div>
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-            Taxi Tiền Giang - Gò Công cung cấp nhiều dịch vụ đa dạng, đáp ứng mọi nhu cầu di chuyển của khách hàng
+            Taxi Gò Công - Tiền Giang cung cấp nhiều dịch vụ đa dạng, đáp ứng mọi nhu cầu di chuyển của khách hàng
           </p>
         </div>
         

@@ -71,7 +71,7 @@ const Footer = () => {
               <div className="flex flex-col items-center mb-4 md:mb-6">
                 <img 
                   src="/images/logo.png" 
-                  alt="Taxi Tiền Giang - Gò Công"
+                  alt="Taxi Gò Công - Tiền Giang"
                   className="h-20 mb-2" 
                 />
                 <p className="text-gray-300 mb-4 md:mb-6 text-sm md:text-base">
@@ -168,7 +168,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Taxi Tiền Giang - Gò Công. Tất cả các quyền được bảo lưu.
+              © {new Date().getFullYear()} Taxi Gò Công - Tiền Giang. Tất cả các quyền được bảo lưu.
             </p>
             <div className="mt-4 md:mt-0">
               <ul className="flex space-x-6">
