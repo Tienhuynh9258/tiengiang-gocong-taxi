@@ -1,13 +1,9 @@
 import { Resend } from 'resend';
-import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Use ES module export syntax
-const handler = async(
-  req: VercelRequest,
-  res: VercelResponse
-) => {
+export default async function handler(req, res) {
   // Add CORS headers for production
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -121,12 +117,11 @@ const handler = async(
 
     console.log('Email sent successfully:', data);
     return res.status(200).json({ message: 'Booking successful!', data });
-  } catch (exception: any) {
+  } catch (exception) {
     console.error('Unexpected error:', exception);
     return res.status(500).json({ 
       message: 'An unexpected error occurred.', 
       error: exception.message || 'Unknown error'
     });
   }
-} 
-export default handler;
+}
