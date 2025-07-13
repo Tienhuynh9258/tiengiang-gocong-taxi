@@ -4,10 +4,10 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Use ES module export syntax
-export default async function handler(
+const handler = async(
   req: VercelRequest,
   res: VercelResponse
-) {
+) => {
   // Add CORS headers for production
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -129,3 +129,4 @@ export default async function handler(
     });
   }
 } 
+export default handler;
