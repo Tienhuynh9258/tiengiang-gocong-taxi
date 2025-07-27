@@ -34,7 +34,7 @@ const Navbar = () => {
             <div className="flex items-center space-x-6">
               <div className="flex items-center">
                 <PhoneCall className="h-4 w-4 mr-2" />
-                <a href="tel:0387560769" className="hover:text-brand-yellow"><strong>Hotline:</strong> 0387 560 769</a>
+                <a href="tel:0932915576" className="hover:text-brand-yellow"><strong>Hotline:</strong> 0932 915 576</a>
               </div>
               <div className="flex items-center">
                 <Mail className="h-4 w-4 mr-2" />
@@ -79,9 +79,9 @@ const Navbar = () => {
               <a href="#cars" className="text-gray-800 hover:text-brand-blue font-medium">Xe</a>
               <a href="#contact" className="text-gray-800 hover:text-brand-blue font-medium">Liên hệ</a>
               <Button asChild className="bg-brand-yellow hover:bg-yellow-500 text-brand-darkBlue font-bold">
-                <a href="tel:0387560769">
+                <a href="tel:0932915576">
                   <PhoneCall className="mr-2 h-4 w-4" />
-                  <strong>Hotline:</strong> 0387 560 769
+                  <strong>Hotline:</strong> 0932 915 576
                 </a>
               </Button>
             </div>
@@ -115,9 +115,9 @@ const Navbar = () => {
                 Liên hệ
               </a>
               <Button asChild className="bg-brand-yellow hover:bg-yellow-500 text-brand-darkBlue font-bold w-full">
-                <a href="tel:0387560769">
+                <a href="tel:0932915576">
                   <PhoneCall className="mr-2 h-4 w-4" />
-                  <strong>Hotline:</strong> 0387 560 769
+                  <strong>Hotline:</strong> 0932 915 576
                 </a>
               </Button>
             </div>
