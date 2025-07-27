@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ZALO_LINK = 'https://zalo.me/0972445983';
-const PHONE_NUMBER = '0972445983';
+const ZALO_LINK = 'https://zalo.me/0932915576';
+const PHONE_NUMBER = '0932915576';
 
 export const FloatingContact: React.FC = () => (
   <div className="floating-contact">

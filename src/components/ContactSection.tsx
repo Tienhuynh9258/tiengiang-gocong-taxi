@@ -36,9 +36,9 @@ const ContactSection = () => {
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
           <Button className="bg-brand-yellow hover:bg-yellow-500 text-brand-darkBlue font-semibold px-8 py-6 rounded shadow-lg" asChild>
-            <a href="tel:0387560769">
+            <a href="tel:0932915576">
               <PhoneCall className="mr-2 h-5 w-5" />
-              Gọi Ngay: 0387 560 769
+              Gọi Ngay: 0932 915 576
             </a>
           </Button>
           <span className="mx-2 font-semibold text-gray-500">HOẶC</span>

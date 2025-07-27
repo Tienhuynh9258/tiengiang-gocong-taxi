@@ -1,7 +1,7 @@
 // Thông tin tĩnh cho Footer
 export const FOOTER_CONTACT = {
   address: '3/2B, khu phố 6, phường 2, TP. Gò Công, Tiền Giang',
-  phones: ['0387 560 769', '0948 262 223'],
+  phones: ['0932 915 576', '0948 262 223'],
   emails: ['taxigocongtiengiang@gmail.com'],
 };
 
